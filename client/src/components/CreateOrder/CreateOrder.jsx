@@ -3,8 +3,6 @@ import {images} from '../../constants/index'
 import './CreateOrder.css'
 import Navbar from "../Navbar/Navbar";
 
-
-
 const CreateOrder = () => {
 const types=["trousers","boxers","jeans","others","shirt","tshirt","joggers"]
 const imz=[images.trousers,images.boxers,images.jeans,images.others,images.shirt,images.tshirt,images.joggers]
