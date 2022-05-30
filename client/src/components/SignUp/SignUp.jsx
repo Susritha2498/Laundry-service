@@ -23,8 +23,7 @@ const SignUp = () => {
             <input type="text" id="pincode"/>
             <label htmlFor="password">Password</label>
             <input type="text" id="password"/><br />
-            
-            <a href="/orders"><button></button></a>
+            <a href="/orders"><button>Register</button></a>
         </div>
     <Details/>
     </div>
