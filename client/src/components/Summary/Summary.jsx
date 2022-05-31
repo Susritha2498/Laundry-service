@@ -3,7 +3,13 @@ import React from 'react'
 const Summary = () => {
   return (
     <div className='app-checkout'>
-      <p>Summary</p> 
+      <div className='summary'>
+          <h2>Summary</h2>
+          <span class="close">&times;</span>
+      </div>
+      <div className='user-address'>
+        <input type="text" placeholder='location' />  
+      </div>  
       <p>Shirts = </p>
       <p>pants = </p>
       <p>tshirts = </p>
