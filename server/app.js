@@ -4,20 +4,18 @@ const app = express();
 require('dotenv').config()
 const cors = require('cors');
 const connection = require('./database');
-const userRoutes=require("./router/user");
-const authRoutes=require("./router/author");
+const authRoutes=require("./router/userRoutes.js");
+const orderRoutes = require("./router/orderRoutes.js")
 //database
 connection();
-
-
 
 //middlewares
 app.use(express.json());
 app.use(cors());
 
 //routes
-app.use("/api/users",userRoutes);
-app.use("/api/author",authRoutes)
+app.use("/",authRoutes);
+app.use("/",orderRoutes)
 
 const port = process.env.PORT || 8080;
 
