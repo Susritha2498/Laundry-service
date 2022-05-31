@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Sidebar from "../Sidebar/Sidebar"
-import {Images} from "../../constants/index"
+// import {images} from "../../constants/index"
 import './PastOrders.css'
 
 const PastOrders = () => {
