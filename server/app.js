@@ -3,9 +3,8 @@ const app = express();
 require('dotenv').config()
 const cors = require('cors');
 const connection = require('./database');
-const authRoutes=require("./router/author");
-const orderRoutes=require("./router/order");
-
+const authRoutes=require("./router/userRoutes.js");
+const orderRoutes = require("./router/orderRoutes.js")
 //database
 connection();
 
@@ -13,12 +12,9 @@ connection();
 app.use(express.json());
 app.use(cors());
 
-app.use(authRoutes)
-app.use(orderRoutes)
-
-app.get('/',(req,res)=>{
-    res.send("hello world from the server app.js")
-})
+//routes
+app.use("/",authRoutes);
+app.use("/",orderRoutes)
 
 const port = process.env.PORT || 8080;
 

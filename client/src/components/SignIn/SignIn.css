@@ -1,35 +1,28 @@
 .app-sigin{
-    display: flex;
-    flex-direction: column;
+display: flex;
+flex-direction: column;
+width: 100%;
+height:1000px ;
 }
-h2.header{
-    font-size: xxx-large;
-    margin-left: 100px;
-    color: #5861AE;
-}
+
 .app-sigin-section{
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
     height: 450px;
+    border-bottom: 1px solid #1818cf;
 }
+
 .sigin-left {
     width: 50%;
-    background-color: ghostwhite;
-    height: 450px;
     
+    height: 450px;
 }
 
-
-button {
-    margin-left: 108px;
-    width: 100px;
-    height: 30px;
-    color: #5861AE;
-    border-radius: 4px;
-    border: 2px solid #4552C1;
-    text-decoration: none;
+.sigin-left h2{
+font-size: 70px;
+color: #5861AE;
 }
 
 
@@ -37,40 +30,30 @@ button {
     width: 50%;
     display: flex;
     flex-direction: column;
-    height: 450px;
-    background-color: #e9e9ff;
+    height: 449px;
+    background-color: ghostwhite;
 }
 
-span {
-    margin-left: 100px;
-    margin-top: 55px;
-    font-size: x-large;
-    color: #5861AE;
-    margin-bottom: 20px;
-}
-
-label {
-    margin-left: 100px;
-    margin-top: 11px;
-    margin-bottom: 6px;
-    color: #5050d7;
-}
-
-input#mail {
-    margin-left: 100px;
-    width: 160px;
+.sigin-left #sigin-p2 {
+font-size: 14px;
+letter-spacing: 0.64px;
+color: #565657;
+text-transform: capitalize;
 }
 
 input#password {
     margin-left: 100px;
-    width: 160px;
+    width: 270px;
+
+
+.app-userform p{
+font-size: 26px;
+letter-spacing: 1.28px;
+color:#4552C1;
+margin-bottom: 50px;
 }
 
 
-a.forgot {
-    margin-left: 216px;
-    
-}
 button.signin {
     height: 30px;
     width: 90px;
@@ -79,6 +62,18 @@ button.signin {
     /* border-color: white; */
     border-radius: 4px;
     padding: 5px;
+    margin-top: 75px;
+    margin-left: 157px;
+  }
+
+.app-userform input{
+text-decoration: none;
+outline: none;
+border: none;
+width: 300px;
+margin-bottom: 30px;
+background-color:transparent ;
+border-bottom: 2px solid #5861AE;
 }
 
 
@@ -90,10 +85,22 @@ button.signin {
     opacity: 1;
     margin-left: 100px;
     margin-bottom: 65px;
+    margin-top: 38px;
+  }
+  
+.app-userform .user-forgot{
+text-decoration: none;
+color:#4552C1;
+margin-bottom: 50px;
+margin-right: 0;
 }
 
-
-
+.app-userform a{
+text-decoration: none;
+border: none;
+outline: none;
+}
+  
 .sigin-left p {
     font: normal normal normal 16px/26px Avenir;
     letter-spacing: 0.64px;
@@ -101,4 +108,33 @@ button.signin {
     text-transform: capitalize;
     opacity: 1;
     margin-left: 100px;
+}
+
+.sigin-left h2 {
+    height: auto;
+    border: none;
+    margin-top: 100px;
+    font-size: xxx-large;
+    margin-left: 100px;
+    color: #5861AE;
+}
+.app-userform input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #81b1d7;
+    text-decoration: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 100px;
+    width: 270px;
+}
+.app-userform label {
+    margin-left: 100px;
+    margin-top: 11px;
+    margin-bottom: 6px;
+    color: #5050d7;
+}
+a.forgot {
+    margin-top: 10px;
+    margin-left: 285px;
 }

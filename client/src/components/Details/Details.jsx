@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Details.css"
-import {Images} from '../../constants/index'
+import {images} from '../../constants/index'
 
 const Details = () => {
   return (
@@ -35,9 +35,9 @@ const Details = () => {
         <div id='app-socialmedia'>
           <h3>SOCIAL MEDIA</h3>
           <div className='app-media-icons'>
-            <img src={Images.facebook} alt="facebook" />
-            <img src={Images.instagram} alt="instagram" />
-            <img src={Images.linkedin} alt="linkedin" />
+            <img src={images.facebook} alt="facebook" />
+            <img src={images.instagram} alt="instagram" />
+            <img src={images.linkedin} alt="linkedin" />
           </div>
         </div>
 
