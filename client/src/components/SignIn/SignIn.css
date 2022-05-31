@@ -2,21 +2,18 @@
     display: flex;
     flex-direction: column;
 }
-h2.header{
-    font-size: xxx-large;
-    margin-left: 100px;
-    color: #5861AE;
-}
+
 .app-sigin-section{
     display: flex;
     width: 100%;
     align-items: center;
     justify-content: center;
     height: 450px;
+    border-bottom: 1px solid #1818cf;
 }
 .sigin-left {
     width: 50%;
-    background-color: ghostwhite;
+    
     height: 450px;
     
 }
@@ -37,8 +34,8 @@ button {
     width: 50%;
     display: flex;
     flex-direction: column;
-    height: 450px;
-    background-color: #e9e9ff;
+    height: 449px;
+    background-color: ghostwhite;
 }
 
 span {
@@ -49,28 +46,12 @@ span {
     margin-bottom: 20px;
 }
 
-label {
-    margin-left: 100px;
-    margin-top: 11px;
-    margin-bottom: 6px;
-    color: #5050d7;
-}
-
-input#mail {
-    margin-left: 100px;
-    width: 160px;
-}
-
 input#password {
     margin-left: 100px;
-    width: 160px;
+    width: 270px;
 }
 
 
-a.forgot {
-    margin-left: 216px;
-    
-}
 button.signin {
     height: 30px;
     width: 90px;
@@ -79,6 +60,8 @@ button.signin {
     /* border-color: white; */
     border-radius: 4px;
     padding: 5px;
+    margin-top: 75px;
+    margin-left: 157px;
 }
 
 
@@ -90,6 +73,7 @@ button.signin {
     opacity: 1;
     margin-left: 100px;
     margin-bottom: 65px;
+    margin-top: 38px;
 }
 
 
@@ -101,4 +85,33 @@ button.signin {
     text-transform: capitalize;
     opacity: 1;
     margin-left: 100px;
+}
+
+.sigin-left h2 {
+    height: auto;
+    border: none;
+    margin-top: 100px;
+    font-size: xxx-large;
+    margin-left: 100px;
+    color: #5861AE;
+}
+.app-userform input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #81b1d7;
+    text-decoration: none;
+    outline: none;
+    background-color: transparent;
+    margin-left: 100px;
+    width: 270px;
+}
+.app-userform label {
+    margin-left: 100px;
+    margin-top: 11px;
+    margin-bottom: 6px;
+    color: #5050d7;
+}
+a.forgot {
+    margin-top: 10px;
+    margin-left: 285px;
 }
