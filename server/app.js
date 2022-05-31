@@ -1,23 +1,24 @@
 const express = require("express");
 const app = express();
-// const mongoose = require('mongoose');
 require('dotenv').config()
 const cors = require('cors');
 const connection = require('./database');
-const userRoutes=require("./router/user");
 const authRoutes=require("./router/author");
+const orderRoutes=require("./router/order");
+
 //database
 connection();
-
-
 
 //middlewares
 app.use(express.json());
 app.use(cors());
 
-//routes
-app.use("/api/users",userRoutes);
-app.use("/api/author",authRoutes)
+app.use(authRoutes)
+app.use(orderRoutes)
+
+app.get('/',(req,res)=>{
+    res.send("hello world from the server app.js")
+})
 
 const port = process.env.PORT || 8080;
 
