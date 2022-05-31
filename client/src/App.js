@@ -4,7 +4,7 @@ import {Navbar,Footer,SignIn,SignUp,PastOrders,CreateOrder,Summary} from "./comp
 
 const App = () => {
   return (
-    <>
+    <div className='app-container'>
     <Navbar/>
     <Router>
       <Routes>
@@ -16,7 +16,7 @@ const App = () => {
       </Routes>
     </Router>
     <Footer/>
-    </>
+    </div>
   )
 }
 

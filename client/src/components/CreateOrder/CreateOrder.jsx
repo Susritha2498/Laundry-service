@@ -1,65 +1,72 @@
 import React, { useState } from "react";
 import {images} from '../../constants/index'
+import {Link} from "react-router-dom"
+import Sidebar from "../Sidebar/Sidebar";
 import './CreateOrder.css'
-import Navbar from "../Navbar/Navbar";
 
 const CreateOrder = () => {
 const types=["trousers","boxers","jeans","others","shirt","tshirt","joggers"]
-const imz=[images.trousers,images.boxers,images.jeans,images.others,images.shirt,images.tshirt,images.joggers]
+const imglist=[images.trousers,images.boxers,images.jeans,images.others,images.shirt,images.tshirt,images.joggers]
  return (
   <div className="app-create-order">
-  <div className="header">
-    <div className="store-table-header-heading">
-      <h1>Create Order</h1>
-    </div>
-    <div className="store-table-header-search-bar">
-      <input type="text" placeholder="Search"></input>
-    </div>
-    </div>
-    <div className="header-Store">
-                <div className="h-details"><h3>Product Type</h3></div>
-                <div className="q-details"><h3>Quantity</h3></div>
-                <div className="w-details"><h3>Wash Type</h3></div>
-                <div className="p-details"><h3>Price</h3></div>
-                <div className="r-details"><h3>Reset</h3></div>
-    </div>
-     <div>
-     {types.map((type,index)=>{
-       
-     return(
-       <div>
-       <div className="item-1">
-
-    <div className="details">
-      <div className="img1"><img src={imz[index]}/></div>
-        <div className="data">
-          <h3>{type}</h3>
-          <p>Lorem Ipsum is the </p>
+    <Sidebar/>
+    <div className="create-section">
+      <div className="create-heading">
+        <h3>Create Order</h3>
+        <div>
+        <input type="text"/>
+        <img src={images.search} alt="searchIcon"/>
         </div>
       </div>
-      <div className="quantity"><input type='number' id="Trousers"></input></div>
-        <div className="wash-type">
-        <div className="img2"><img src={images.washingmachine} /></div>
-        <div className="img2"><img src={images.ironing}  /></div>
-        <div className="img2"><img src={images.btowel}  /></div>
-        <div className="img2"><img src={images.bleach}  /></div>
-    </div>
-<div className="price"><button type="submit" class="btn btn-default" id="2" ></button></div>
-<div className="reset"> <button type="submit" class="btn btn-default" id="2">reset</button></div>
 
-</div>
+      <div className="create-table-header">
+        <h3 className="order-producttype">Product Type</h3>
+        <h3 className="order-quantity">Quantity</h3>
+        <h3 className="order-washtype">Wash Type</h3>
+        <h3 className="order-price">Price</h3>
+        <h3 className="order-reset">Reset</h3>
+      </div>
 
-      </div>  
-    )})}
-     
-    </div>
-    <div className="lastone">
-      <button >cancel</button>
-        <a href="/checkout">
-          <button>proceed</button>
-        </a> 
+      <div className="table-order-options">
+        {types.map((type,index)=>{ 
+          return(
+            <div className="create-order-details" key={`order${index}`}>
+              <div id="order-photo" className="order-producttype">
+                <img src={imglist[index]} alt="productType"/>
+                <div className="order-name">
+                  <h3>{type}</h3>
+                  <p>Lorem Ipsum is the </p>
+                </div>
+              </div>
+
+              <div className="div-qty"><input type='number' className="order-quantity" value={0}/></div>
+
+              <div className="order-washtype">
+                <img src={images.washingmachine} alt="washing" />
+                <img src={images.ironing} alt="iron" />
+                <img src={images.btowel} alt="folding" />
+                <img src={images.bleach} alt = "chemical washing"/>
+              </div>
+
+              <div className="div-price"><p className="order-price">______</p></div>
+              
+              <div className="div-reset">
+              <button type="reset" className="order-quantity">reset</button>
+              </div>
+
+            </div>
+          )
+        })}
+        </div>
+      
+      <div className="create-proceed">
+        <button>cancel</button>
+        <Link to="/checkout"><button>proceed</button></Link> 
+      </div>
+
     </div>
   </div>
  )
-     }
-export default CreateOrder;
+}
+
+export default CreateOrder
