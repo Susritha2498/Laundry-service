@@ -62,13 +62,13 @@ const SignUp = () => {
             <div className='user-data'>
                 <div className='user-data-lf'>
                     <label htmlFor="name">Name</label><br />
-                    <input type="text"  id="name"/><br />
+                    <input type="text" id="name"/><br />
                     <label htmlFor="email">Email</label><br />
-                    <input type="email"   id="email"/><br />
+                    <input type="email" id="email"/><br />
                     <label htmlFor="phone">Phone</label><br />
-                    <input type="number"id="phone"/><br />
+                    <input type="number" id="phone"/><br />
                     <label htmlFor="state">State</label><br />
-                    <input type="text"id="state"/>
+                    <input type="text" id="state"/>
                 </div><br />
 
                 <div className='user-data-rs'>
@@ -91,6 +91,7 @@ const SignUp = () => {
         </div>
     
     </form>
+
     <Details/></>
 
   )
