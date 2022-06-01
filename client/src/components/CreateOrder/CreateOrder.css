@@ -10,6 +10,7 @@ justify-content: center;
 align-items: center;
 width:90%;
 padding-left: 50px;
+z-index: 1;
 }
 
 .create-heading{
@@ -17,7 +18,14 @@ display: flex;
 justify-content:space-between;
 align-items: center;
 width:100%;
+margin-bottom: 20px;
+}
 
+.create-heading input{
+outline: none;
+text-decoration: none;
+border: none;
+border-bottom: 2px solid #A0A0A0;
 }
 
 .create-table-header{
@@ -92,6 +100,10 @@ padding: 0;
 margin: 0;
 }
 
+.order-name{
+text-transform: capitalize;
+}
+
 .div-qty{
 display: flex;
 justify-content: center;
@@ -118,6 +130,7 @@ align-items: center;
 display: flex;
 justify-content: center;
 align-items: center;
+width:120px;
 }
 
 .create-order-details button{
@@ -125,5 +138,39 @@ color: #4552C1;
 background-color: #f7f5f5;
 border-radius: 4px;
 border:1px solid #5861AE;
-padding: 5px;
+padding: 5px 10px;
+width:fit-content;
+}
+
+.create-proceed{
+display: flex;
+width:100%;
+justify-content: flex-end;
+align-content: center;
+}
+
+.create-proceed button{
+color: #4552C1;
+background-color: #f7f5f5;
+border-radius: 4px;
+border:1px solid #5861AE;
+padding: 5px 10px;
+margin:10px 5px;
+}
+
+button:hover{
+background-color: #5861AE;
+color: white;
+}
+
+.order-summary{
+display: flex;
+justify-content: center;
+align-items: center;
+width:60%;
+position:absolute;
+top:0;
+right:0;
+background-color: white;
+z-index:3
 }

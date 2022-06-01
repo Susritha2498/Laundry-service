@@ -28,7 +28,7 @@ router.post('/register', async (req,res)=>{
         let {name,mail,phone,state,district,address,pincode,password} = req.body
 
         if(!name||!mail||!phone||!state||!district||!address||!pincode||!password){
-            return res.status(304).json({Status:"Registration failed",
+            return res.status(422).json({Status:"Registration failed",
         Message:"Please fill out all the details"})
         }
         const userFound =await User.findOne({mail:mail})
@@ -63,7 +63,7 @@ router.post('/login', async function(req,res){
     try{
         const {mail,password} = req.body
         if(!mail || !password){
-            return res.status(304).json({Message:"Fill out the details"})
+            return res.status(422).json({Message:"Fill out the details"})
         }
         const user = await User.findOne({mail:mail})
         if(!user){
@@ -76,7 +76,6 @@ router.post('/login', async function(req,res){
             return res.status(401).json({Status:"Error",
             Error:"Invalid password. Try again"})
         }
-        console.log(user._id.toString())
         const token = await jtoken.sign({_id:user._id.toString()},process.env.SECRET_TOKEN)
         await user.updateOne({$set:{logtoken:token}})
         res.status(200).json({Status:"Sucess",
