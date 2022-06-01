@@ -1,15 +1,15 @@
 import React,{useState,useEffect} from 'react'
+import { images } from '../../constants'
 import Sidebar from "../Sidebar/Sidebar"
-import {Images} from "../../constants/index"
 import './PastOrders.css'
 
 const PastOrders = () => {
   const [orders,setorders] = useState([])
   useEffect(() => {
     async function getOrders(){
-      const reqdata = await fetch("http://localhost:8080/posts")
-      const data = await reqdata.json()
-      setorders([...data.orders])
+      const reqdata = await fetch("http://localhost:8080/allorders")
+      const gotdata = await reqdata.json()
+      setorders([...gotdata.data])
     }
     getOrders()
   }, [])
@@ -18,6 +18,14 @@ const PastOrders = () => {
     <div className='app-past-orders'>
       <Sidebar/>
       <div className='app-orders'>
+        <div className="past-heading">
+          <h3>Orders | {orders.length}</h3>
+          <div>
+          <input type="text"/>
+          <img src={images.search} alt="searchIcon"/>
+          </div>
+        </div>
+
       {orders.length? 
        <table>
         <thead>
@@ -35,18 +43,18 @@ const PastOrders = () => {
         </thead>
         <tbody>
           {orders.map((order,idx)=>{
-            const {orderid,orderdate,location,city,phone,totalitems,price,status,view} = order
+            const {orderId,orderTimeDate,storeLocation,city,storePhone,totalItems,price,status} = order
             return(
-              <tr key={`order ${idx}`}>
-                <td>{orderid}</td>
-                <td>{orderdate}</td>
-                <td>{location}</td>
+              <tr key={`order ${idx}`} className={(idx%2)?"order-odd":"order-even"}>
+                <td>{orderId}</td>
+                <td>{orderTimeDate}</td>
+                <td>{storeLocation}</td>
                 <td>{city}</td>
-                <td>{phone}</td>
-                <td>{totalitems}</td>
+                <td>{storePhone}</td>
+                <td>{totalItems}</td>
                 <td>{price}</td>
                 <td>{status}</td>
-                <td>{view}</td>
+                <td className='order-view-eye'><img src={images.eye} alt="view" /></td>
               </tr>
             )
           }

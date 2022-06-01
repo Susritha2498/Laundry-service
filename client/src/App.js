@@ -4,7 +4,7 @@ import {Navbar,Footer,SignIn,SignUp,PastOrders,CreateOrder,Summary} from "./comp
 
 const App = () => {
   return (
-    <>
+    <div className='app-container'>
     <Navbar/>
     <Router>
       <Routes>
@@ -12,11 +12,11 @@ const App = () => {
         <Route path="/register" element={<SignUp/>}/>
         <Route path="/orders" element={<PastOrders/>}/>
         <Route path ="/createorder" element={<CreateOrder/>}/>
-        <Route path ="/checkout" element={<Summary/>}/>
+        {/* <Route path ="/checkout" element={<Summary/>}/> */}
       </Routes>
     </Router>
     <Footer/>
-    </>
+    </div>
   )
 }
 
