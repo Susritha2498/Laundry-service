@@ -1,46 +1,48 @@
 import React ,{useState}from 'react'
 import { Link ,useNavigate} from 'react-router-dom'
-import {Details} from "../index"
+import {Details, Sidebar} from "../index"
+import axios from "axios"
 import "./SignIn.css"
+
 const SignIn = () => { 
   const pastorders = useNavigate()
   const [mail, setMail]=useState("")
-  const [password,setPassword]=useState('')
+  const [password,setPassword]=useState("")
   const [login, setLogin]=useState(false)
   const [message ,setMessage]=useState("")
-
+  const [token,setToken] = useState("")
+  const [name,setName] = useState("")
+  const [id,setId] = useState("")
 
  const loginUser = async (e) =>{
       e.preventDefault();
-      const res=await fetch("http://localhost:8080/login", {
-          method:"POST", 
-          headers:{
-              "Content-Type":"application/json"
-          },body:JSON.stringify({
-            mail,password
-          })
-        })
-  if(res.status === 200 ){
-    setMail(mail)
-    setMessage("Login is successful")
-    console.log(message)
-    setTimeout(()=>{
-      setMessage("")
-      pastorders('/orders')
-    },2000)
-    
-    setLogin(true)
-
-  }else{
-    
-    setMessage("Login not successful")
-    console.log(message)
-    setTimeout(()=>{
-      setMessage("")
-    },2000)
-    
-    setLogin(false)
-  }
+      axios.post("http://localhost:8080/login",{
+        mail:mail,
+        password:password
+      })
+      .then((response)=>{
+        let newtoken = response.data.genToken 
+        let Username = response.data.userDetails.name 
+        let UserId = response.data.userDetails._id      
+        localStorage.setItem('token',newtoken)
+        alert("Successfully logged in")
+        setMail(mail)
+        setName(Username)
+        setToken(newtoken)
+        setId(UserId)
+        setMessage("Login is successful")
+        setTimeout(()=>{
+          setMessage("")
+          pastorders('/orders')
+        },2000)
+        setLogin(true)
+        }).catch((err)=>{
+          setMessage("Login not successful")
+          setTimeout(()=>{
+            setMessage("")
+          },2000)
+          setLogin(false)
+            })
  }
    return (   
   <div className='app-sigin'>  
@@ -68,7 +70,10 @@ const SignIn = () => {
           <button type="submit" className="signin" onClick={loginUser}>Sign in</button>       
         </form>           
       </div>    
-  <Details/>    
+  <Details/>
+  <div style={{display:"none"}}>
+    <Sidebar mail={mail} setMail={setMail} />  
+  </div>  
 </div> 
   )
 }

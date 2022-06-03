@@ -12,7 +12,6 @@ connection();
 //middlewares
 app.use(express.json());
 app.use(cors());
-
 //routes
 app.use("/",authRoutes);
 app.use("/",orderRoutes)

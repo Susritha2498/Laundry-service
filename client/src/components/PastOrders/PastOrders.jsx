@@ -1,10 +1,11 @@
 import React,{useState,useEffect} from 'react'
 import { images } from '../../constants'
-import Sidebar from "../Sidebar/Sidebar"
+import {Sidebar, CancelOrder} from '../index'
 import './PastOrders.css'
 
 const PastOrders = () => {
   const [orders,setorders] = useState([])
+  const [cancel,setCancel] = useState(false)
   useEffect(() => {
     async function getOrders(){
       const reqdata = await fetch("http://localhost:8080/allorders")
@@ -53,7 +54,7 @@ const PastOrders = () => {
                 <td>{storePhone}</td>
                 <td>{totalItems}</td>
                 <td>{price}</td>
-                <td>{status}</td>
+                <td>{status} <b style={{color:'red',marginLeft:'20px'}} onClick={(e)=>{setCancel(true)}}>cancel order</b> </td>
                 <td className='order-view-eye'><img src={images.eye} alt="view" /></td>
               </tr>
             )
@@ -69,6 +70,11 @@ const PastOrders = () => {
       </div>
       }
     </div>
+
+  <div className='order-cancel-summary' style={cancel?{display:'flex'}:{display:'none'}}>
+    <CancelOrder cancel={cancel} setCancel={setCancel}/>
+  </div>
+
   </div>
   )
 }

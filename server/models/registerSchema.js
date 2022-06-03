@@ -42,12 +42,16 @@ const userSchema = new Mongoose.Schema(
         type:String,
         required:true
     },
-    logtoken:{
-        type:String,
-        default:'sdeddfr.sdfcdef.asdefrgsad'
-    }
-    }
-)
+    tokens:[
+        {
+                token:{
+                type:String,
+                default:"sdfddwfegrh.swdefrgtsdfg.sdfgfdgb",
+                required:true
+            }
+        }
+    ]
+})
 
 const User = new Mongoose.model('user',userSchema)
 

@@ -1,0 +1,87 @@
+.app-cancelorder{
+position: absolute;
+width:30%;
+height:50%;
+top:30%;
+left:35%;
+border-radius: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: white;
+border: 1px solid gray;
+}
+
+.Cancelled {
+text-align: center;
+padding: 40px 0;
+margin-bottom: 52px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+.cancel-heading{
+background-color: #5861AE;
+color:white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width:96%;
+font-size: large;
+padding:10px;
+position: absolute;
+top:0;
+border-radius: 5px;
+}
+
+
+.cancel-alert {
+display: flex;
+width:80%;
+height:80%;
+}
+
+.cancel-alert h1{
+word-wrap: break-word;
+}
+
+.Cancelled span{
+color:#5861AE;
+padding: 0;
+margin: 0;
+}
+
+.div-cancel-img{
+height:100%;
+}
+
+.Cancelled img{
+width:50px;
+height:50px;
+}
+
+.cancel-text{
+display: flex;
+flex-direction: column;
+margin-left: 20px;
+}
+
+.Cancelled button {
+margin-top: 16px;
+margin-left: 10px;
+width: 180px;
+height: 35px;
+background: white 0% 0% no-repeat padding-box;
+color: #5861AE;
+border: 2px solid 5861AE;
+border-radius: 5px;
+}
+
+
+.Cancelled button:hover {
+background-color: #5861AE;
+color:white
+}
