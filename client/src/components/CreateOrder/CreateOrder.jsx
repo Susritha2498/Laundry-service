@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {images} from '../../constants/index'
-// import {Link} from "react-router-dom"
 import {Sidebar,Product, NavbarSuccess, Summary} from "../index"
 import './CreateOrder.css'
 
@@ -23,18 +22,18 @@ const handleCancel =(e)=>{
     let Sum = 0
     types.map((type,index)=>{
     Sum+=Items[type].price
+    return Sum
   })
   setTotal(Sum)
   if(Sum===0) alert("Please select some services")
-  if (Sum!=0) setProceed(true)
-  setProceed(true)
+  if (Sum!==0) setProceed(true)
   }
 
 
 return (
   <div style={{display:'flex',flexDirection:"column", width:"100%"}}>
       <NavbarSuccess/>
-  <div className="app-create-order">
+  <div className="app-create-order" style={proceed?{opacity:"0.6",zIndex:"1"}:{opacity:"1"}}>
     <Sidebar/>
     <div className="create-section">
       <div className="create-heading">
@@ -64,9 +63,8 @@ return (
         </div>
     </div>
   </div>
-    <div className="order-summary" style={proceed?{display:"flex"}:{display:"none"}}>
-      <Summary Items={Items} total={total}/>
-
+    <div className="order-summary" style={proceed?{display:"flex",opacity:"1"}:{display:"none"}}>
+      <Summary Items={Items} total={total} proceed={proceed} setProceed={setProceed}/>
     </div>
   </div>
  )

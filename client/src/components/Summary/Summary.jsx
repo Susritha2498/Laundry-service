@@ -2,10 +2,13 @@ import React,{useState} from 'react';
 import {Successful} from "../index"
 
 import './Summary.css'
-const Summary = ({Items,total}) => {
+const Summary = ({Items,total,proceed,setProceed}) => {
   const [ordersuccess,setorderSuccess] = useState(false)
   const types=["shirts","tshirts","trousers","jeans","boxers","joggers","others"]
 
+  const handleClose = ()=>{
+    setProceed(!proceed)
+  }
   const handleOrderSuccess = async()=>{
     const user = localStorage.key(0)
     const token = localStorage.getItem(user)
@@ -50,29 +53,32 @@ const Summary = ({Items,total}) => {
   }
 
   return (
-    <div className={ordersuccess?'order-popup':'order-success-summary'}>
+    <div className={ordersuccess?'order-popup':'order-success-summary'} style={{zIndex:"100",position:"absolute"}}>
       <div className='app-checkout' style={!ordersuccess?{display:"flex"}:{display:"none"}}>
           <div className='app-checkout-heading'>
               <h2>Summary</h2>
-              <h2 className="close">&times;</h2>
+              <h2 className="close" onClick={handleClose}>&times;</h2>
           </div>
 
           <div className='user-address'>
 
-            <input type="text" placeholder='Store location' value='Vijayawada' />
+            <div className='store-location'>
+              <label htmlFor="">Store location</label>
+              <input type="text" defaultValue='Vijayawada'/>
+            </div>
 
             <div className='store-address'>
                 <label htmlFor="text" >Store Address:</label>
-                <input type="text" value='46-4-6/4,Some x heights, Guntur -523434' />
+                <input type="text" defaultValue='46-4-6/4,Some X heights, Guntur - 523434' />
             </div>
 
             <div className='user-phone'>
                 <label htmlFor="phone">Phone</label>
-                <input type="number" value={8919022059} />
+                <input type="number" defaultValue={8919022059} />
             </div>
           </div>
 
-          <h4 style={{padding:'5px'}}>Order Details</h4>
+          <h4 style={{width:'100%',marginLeft:"18px"}}>Order Details</h4>
 
           <table className='checkout-items'>
             <thead style={{display:'none'}}><td></td></thead>
@@ -99,7 +105,7 @@ const Summary = ({Items,total}) => {
           
         <div className='checkout-address'>
           <h3>Address</h3>
-          <p>46-4-6/4,Some x heights, Guntur -523434</p>
+          <p>46-4-6/4,Some X heights, Guntur - 523434</p>
         </div>
         <button onClick={handleOrderSuccess}>confirm</button>
     </div>

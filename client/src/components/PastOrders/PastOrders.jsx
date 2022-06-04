@@ -1,10 +1,16 @@
 import React,{useState,useEffect} from 'react'
 import { images } from '../../constants'
 import {Sidebar, NavbarSuccess, EachOrder} from '../index'
+import { useNavigate } from 'react-router-dom'
 import './PastOrders.css'
 
 const PastOrders = () => {
   const [orders,setorders] = useState([])
+  const createOne = useNavigate()
+
+  const handleClick =()=>{
+    createOne('/CreateOrder')
+  }
   useEffect(() => {
     async function getOrders(){
       let username = localStorage.key(0)
@@ -63,8 +69,8 @@ const PastOrders = () => {
         </table>
         :
         <div className='app-blank-order'>
-          <p>No order available</p>
-          <a href="/createorder"><button>Create</button></a>
+            <p>No order available</p>
+            <button onClick={handleClick}>Create</button>
         </div>
         }
       </div>
