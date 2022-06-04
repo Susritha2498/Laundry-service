@@ -13,6 +13,7 @@ const Items = {shirts:{},tshirts:{},trouser:{},jeans:{},boxers:{},joggers:{},oth
 const [proceed,setProceed] = useState(false)
 const [total,setTotal] = useState(0)
 
+
 const handleCancel =(e)=>{
   e.preventDefault()
   setProceed(false)
@@ -26,6 +27,7 @@ const handleCancel =(e)=>{
   setTotal(Sum)
   if(Sum===0) alert("Please select some services")
   if (Sum!=0) setProceed(true)
+  setProceed(true)
   }
 
 
@@ -64,6 +66,7 @@ return (
   </div>
     <div className="order-summary" style={proceed?{display:"flex"}:{display:"none"}}>
       <Summary Items={Items} total={total}/>
+
     </div>
   </div>
  )
