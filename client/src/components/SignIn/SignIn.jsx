@@ -1,6 +1,6 @@
 import React ,{useState}from 'react'
 import { Link ,useNavigate} from 'react-router-dom'
-import {Details, Sidebar} from "../index"
+import {Details, Sidebar, Navbar, PastOrders, CreateOrder, Summary} from "../index"
 import axios from "axios"
 import "./SignIn.css"
 
@@ -24,7 +24,7 @@ const SignIn = () => {
         let newtoken = response.data.genToken 
         let Username = response.data.userDetails.name 
         let UserId = response.data.userDetails._id      
-        localStorage.setItem('token',newtoken)
+        localStorage.setItem(Username,newtoken)
         alert("Successfully logged in")
         setMail(mail)
         setName(Username)
@@ -46,6 +46,7 @@ const SignIn = () => {
  }
    return (   
   <div className='app-sigin'>  
+    <Navbar/>
     <div className="app-sigin-section">      
         <div className="sigin-left">        
             <h2 className="header">laundry <br></br> service</h2>   
@@ -72,7 +73,7 @@ const SignIn = () => {
       </div>    
   <Details/>
   <div style={{display:"none"}}>
-    <Sidebar mail={mail} setMail={setMail} />  
+    <Sidebar mail={mail} setMail={setMail} /> 
   </div>  
 </div> 
   )

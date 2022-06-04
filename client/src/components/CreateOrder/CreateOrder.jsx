@@ -11,6 +11,8 @@ const types=["shirts","tshirts","trousers","jeans","boxers","joggers","others"]
 const Items = {shirts:{},tshirts:{},trouser:{},jeans:{},boxers:{},joggers:{},others:{}}
 
 const [proceed,setProceed] = useState(false)
+const [total,setTotal] = useState(0)
+
 
 const handleCancel =(e)=>{
   e.preventDefault()
@@ -18,6 +20,13 @@ const handleCancel =(e)=>{
   }
 
   const handleProceed = (e)=>{
+    let Sum = 0
+    types.map((type,index)=>{
+    Sum+=Items[type].price
+  })
+  setTotal(Sum)
+  if(Sum===0) alert("Please select some services")
+  if (Sum!=0) setProceed(true)
   setProceed(true)
   }
 
@@ -56,7 +65,8 @@ return (
     </div>
   </div>
     <div className="order-summary" style={proceed?{display:"flex"}:{display:"none"}}>
-      <Summary Items={Items}/>
+      <Summary Items={Items} total={total}/>
+
     </div>
   </div>
  )

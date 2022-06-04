@@ -1,10 +1,32 @@
 import React,{useState} from 'react'
 import './CancelOrder.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { images } from '../../constants/index'
-import {Successful} from '../index'
 
-const CancelOrder = ({cancel,setCancel}) => {
+const CancelOrder = ({id,OrderNum}) => {
+    const gobacktoOrders = useNavigate()
+
+    const handleCancelOrder = async(e)=>{
+        e.preventDefault()
+        let username = localStorage.key(0)
+        let token = localStorage.getItem(username)
+        const resp = await fetch("http://localhost:8080/delete/"+id,{
+            method:"DELETE",
+            headers:{
+                "content-Type":"application/json",
+                Authorization: token,
+            },
+        })
+
+        if(resp.status===200){
+            alert("Post is successfully deleted")
+            gobacktoOrders('/orders')
+        }
+        else{
+            alert("Failed to delete the post")
+        }
+
+    }
   const [cproceed,setCProceed] = useState(false)
   return (
     <div className='app-cancelorder'>
@@ -19,18 +41,13 @@ const CancelOrder = ({cancel,setCancel}) => {
             </div>
             <div className='cancel-text'>
               <h2>Are you sure you want to cancel</h2> 
-              <h2>the Order <span>No. ORD0002</span></h2>
+              <h2>the Order <b style={{fontSize:"24px",color:"#5861AE"}}>No. {OrderNum}</b></h2>
             </div>
         </div>
       </div>
+    
+    <button onClick={handleCancelOrder}>proceed</button>
 
-      <Link to="/orders">
-        <button onClick={(e)=>{ setCProceed(true) }}>proceed</button>
-      </Link>
-
-      <div className='summary-cancel' style={cproceed?{display:'flex'}:{display:"none"}}>
-        <Successful/>
-      </div>
     </div>
   )
 }

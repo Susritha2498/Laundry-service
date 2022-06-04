@@ -28,6 +28,10 @@ border: none;
 border-bottom: 2px solid #A0A0A0;
 }
 
+.app-orders table{
+border-collapse: collapse;
+}
+
 .app-orders thead tr{
 background-color:#383737 ;
 color: white;
@@ -35,10 +39,8 @@ color: white;
 .app-orders th,td{
 padding:20px;
 }
-
-.app-orders td,th{
-border-bottom: 2px solid #707070;
-column-gap: 0;
+.app-orders tbody tr{
+border-bottom: 1px solid #707070;
 }
 
 .order-odd{

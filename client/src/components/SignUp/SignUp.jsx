@@ -1,5 +1,5 @@
 import React ,{useState} from "react";
-import {Details} from "../index"
+import {Details,Navbar} from "../index"
 import { Link, useNavigate } from 'react-router-dom'
 import './SignUp.css'
 
@@ -50,6 +50,7 @@ const SignUp = () => {
   }
   return (
     <>
+    <Navbar/>
     <form onSubmit={PostData} className='app-register'>
       <div className="register-page-LP">
         <h1>Laundry <br />Service</h1>

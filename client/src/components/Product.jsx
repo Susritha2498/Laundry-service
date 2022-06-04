@@ -1,11 +1,9 @@
 import React,{useState, useEffect, useMemo} from 'react'
 import { images } from '../constants/index'
-import Summary from './Summary/Summary'
-
 const imglist=[images.shirts,images.tshirts,images.trousers,images.jeans,images.boxers,images.joggers,images.others]
 
 const Product = ({type,index,Items}) => {
-    console.log(type)
+
     const [qty,setQty] = useState(0)
     const [wash,setWash] = useState(false)
     const [bleach,setBleach] = useState(false)
@@ -23,9 +21,9 @@ const Product = ({type,index,Items}) => {
 
     var washtype = ''
     var washprice = 0
-    if(wash){washtype+='washing,'; washprice+=10}
+    if(wash){washtype+='Washing,'; washprice+=10}
     if(iron){washtype+='Ironing,';washprice+=10}
-    if(fold){washtype+='folding,';washprice+=5}
+    if(fold){washtype+='Folding,';washprice+=5}
     if(bleach){washtype+='Chemical washing,';washprice+=20}
 
 
@@ -35,7 +33,8 @@ const Product = ({type,index,Items}) => {
         setQty(num)
     }
 
-    Items[type] = {name:type,quantity:qty,washcost:washprice,washtypes:washtype,price:qty*washprice}
+    Items[type] = {producttype:type,quantity:qty,washcost:washprice,washtypes:washtype,price:qty*washprice}
+
 
     const handleReset = (e)=>{
         e.preventDefault()

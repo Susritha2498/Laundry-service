@@ -1,11 +1,10 @@
 import React from 'react'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import {Navbar,Footer,SignIn,SignUp,PastOrders,CreateOrder,Summary} from "./components/index"
+import {Footer,SignIn,SignUp,PastOrders,CreateOrder,Summary} from "./components/index"
 
 const App = () => {
   return (
     <div className='app-container'>
-    <Navbar/>
     <Router>
       <Routes>
         <Route path="/" element={<SignIn/>}/>

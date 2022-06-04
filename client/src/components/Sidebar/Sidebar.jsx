@@ -33,14 +33,18 @@ const Sidebar = ({mail,setMail}) => {
       setAdd(false)
       setList(false)
     }
+    let removeUser = localStorage.key(0)
+    let removeToken = localStorage.getItem(removeUser)
     const res=await fetch("http://localhost:8080/logout", {
         method:"GET", 
         headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            Authorization:removeToken,
         }
       })
       if(res.status === 200 ){  
-        alert("User has logged out")      
+        localStorage.removeItem(removeUser)
+        alert("User has logged out")
         setLogout(true)
         backtoHome('/')
       }else{
