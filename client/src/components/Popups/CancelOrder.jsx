@@ -1,10 +1,15 @@
-import React,{useState} from 'react'
+import React from 'react'
 import './CancelOrder.css'
-import { Link, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 import { images } from '../../constants/index'
 
-const CancelOrder = ({id,OrderNum}) => {
+const CancelOrder = ({id,OrderNum,ordercancel,setorderCancel,view,setView,cancel,setCancel}) => {
     const gobacktoOrders = useNavigate()
+    const handleClose = ()=>{
+      setView(false)
+      setCancel(false)
+      setorderCancel(false)
+    }
 
     const handleCancelOrder = async(e)=>{
         e.preventDefault()
@@ -20,20 +25,25 @@ const CancelOrder = ({id,OrderNum}) => {
 
         if(resp.status===200){
             alert("Post is successfully deleted")
-            gobacktoOrders('/orders')
+            setView(false)
+            setCancel(false)
+            setorderCancel(false)
+            // gobacktoOrders('/orders')
         }
         else{
             alert("Failed to delete the post")
+            setView(false)
+            setCancel(false)
+            setorderCancel(false)
         }
 
     }
-  const [cproceed,setCProceed] = useState(false)
   return (
     <div className='app-cancelorder'>
-      <div className='Cancelled'> 
+      <div className='cancelled'> 
         <div className='cancel-heading'>
           <p>Alert</p>
-          <p className='cancel-close' onClick={()=>{setCProceed(!cproceed)}}>X</p>
+          <p className='cancel-close' onClick={handleClose}>X</p>
         </div>
         <div className="cancel-alert">
             <div className='div-cancel-img'>
@@ -41,7 +51,7 @@ const CancelOrder = ({id,OrderNum}) => {
             </div>
             <div className='cancel-text'>
               <h2>Are you sure you want to cancel</h2> 
-              <h2>the Order <b style={{fontSize:"24px",color:"#5861AE"}}>No. {OrderNum}</b></h2>
+              <h2>the order <b style={{fontSize:"24px",color:"#5861AE"}}>No. {OrderNum}</b></h2>
             </div>
         </div>
       </div>

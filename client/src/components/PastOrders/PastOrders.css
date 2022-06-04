@@ -1,7 +1,7 @@
 .app-past-orders{
 width: 100%;
 display: flex;
-min-height: 700px;
+min-height: 800px;
 }
 
 .app-orders{
@@ -81,4 +81,16 @@ background-color: #f7f5f5;
 border-radius: 4px;
 border:1px solid #5861AE;
 padding:5px 10px;
+margin-left:0;
 }
+
+/* .cancel-summary{
+display: flex;
+justify-content: flex-start;
+align-items: center;
+width:700px;
+height:900px;
+position: absolute;
+right:0px;
+top:0px;
+} */

@@ -1,24 +1,31 @@
 import React,{useState} from 'react';
-import {images} from '../../constants/index'
 import {CancelOrder} from "../index"
 
 import './CancelSummary.css'
-const CancelSummary = ({cancel,view,order,id}) => {
+const CancelSummary = ({cancel,view,order,id,setView,setCancel}) => {
   const [ordercancel,setorderCancel] = useState(false)
   const types=["shirts","tshirts","trousers","jeans","boxers","joggers","others"]
   const Items = order.orderDetails
   const total = order.price
   const OrderNum = order.orderId
+  const handleClose =()=>{
+    setView(false)
+    setCancel(false)
+  }
   return (
   <div className={ordercancel?'order-cancel-popup':'order-cancel-summary'}>
-    <div className='app-cancel-checkout' style={!ordercancel?{display:"flex"}:{display:"none"}}>
+    <div className='app-cancel-checkout' style={!ordercancel?{display:"flex",flexDirection:"column"}:{display:"none"}}>
         <div className='app-cancel-checkout-heading'>
             <h2>Summary</h2>
-            <span className="close">&times;</span>
+            <h2 className="close" onClick={handleClose}>&times;</h2>
         </div>
 
         <div className='cancel-user-address'>
-          <input type="text" placeholder='Store location' />
+          <div className='cancel-store-location'>
+            <label htmlFor="">Store location</label>
+            <input type="text" />
+          </div>
+          
           <div className='cancel-store-address'>
               <label htmlFor="text">Store Address:</label>
               <input type="text" />
@@ -30,7 +37,7 @@ const CancelSummary = ({cancel,view,order,id}) => {
           </div>
         </div>
 
-        <h4>Order Details</h4>
+        <h4 style={{width:'100%',marginLeft:"40px"}}>Order Details</h4>
 
         <table className='cancel-checkout-items'>
         <thead style={{display:'none'}}><td></td></thead>
@@ -40,6 +47,7 @@ const CancelSummary = ({cancel,view,order,id}) => {
                 let washAmount = Items[type].washcost
                 let washtype = Items[type].washtypes
                 let productprice = Items[type].price
+                console.log(qty,washAmount,washtype,productprice)
 
               return(
                 <tr style={(qty && washAmount)?{color:'black'}:{display:'none'}}>
@@ -56,14 +64,14 @@ const CancelSummary = ({cancel,view,order,id}) => {
         <div className='cancel-checkout-costs'><p>Pickup Charges : {parseInt(total/5)}</p></div>
         <div className='cancel-checkout-costs' style={{backgroundColor:'#5861AE',color:'white'}}><p>Total Charges : {total+ parseInt(total/5)}</p></div>
         
-      <div className='cancel-checkout-address'>
-        <h3>address</h3>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, libero perspiciatis</p>
-      </div>
-      <button onClick={e=>{setorderCancel(true)}} style={cancel?{color:'white',backgroundColor:'#F41313'}:{display:"none"}}>Cancel Order</button>
+        <div className='cancel-checkout-address'>
+          <h3>Address</h3>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quo, libero perspiciatis</p>
+        </div>
+        <button onClick={e=>{setorderCancel(true)}} style={cancel?{color:'white',backgroundColor:'#F41313',border:"none"}:{display:"none"}}>Cancel Order</button>
     </div>
     <div className='cancel-order-success' style={ordercancel?{display:"flex"}:{display:"none"}}>
-        <CancelOrder id={id} OrderNum={OrderNum}/>
+        <CancelOrder id={id} OrderNum={OrderNum} ordercancel={ordercancel} setorderCancel={setorderCancel} cancel={cancel} view={view} setCancel={setCancel} setView={setView}/>
     </div>
   </div>
   )
