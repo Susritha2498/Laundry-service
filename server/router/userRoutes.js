@@ -1,10 +1,9 @@
 const express = require("express");
 const Bcrypt = require("bcrypt")
 const jtoken= require("jsonwebtoken");
-
 const router = new express.Router();
 
-const User = require("../models/registerSchema")
+const User = require("../models/registerSchema");
 
 //get all registered users
 
@@ -76,10 +75,10 @@ router.post('/login', async function(req,res){
             return res.status(401).json({Status:"Error",
             Error:"Invalid password. Try again"})
         }
-        const token = await jtoken.sign({_id:user._id.toString()},process.env.SECRET_TOKEN)
-        await user.updateOne({$set:{logtoken:token}})
-        res.status(200).json({Status:"Sucess",
-        genToken:token,})
+        const tokenNow = await jtoken.sign({_id:user._id.toString()},process.env.SECRET_TOKEN)
+        await user.save()
+        res.json({Status:"Sucess",
+        genToken:tokenNow,userDetails:user})
     }
     catch(e){
         res.status(500).json({Status:"Error",

@@ -12,6 +12,7 @@ const OrdersSchema = new mongoose.Schema(
     status: {type:String,default: "In Washing",},
     address: {type:String,required:true },
     user:{type: String,ref:'users'},
+    orderDetails:{type:Object,required:true}
 })
 
 const Order = mongoose.model("orders",OrdersSchema)

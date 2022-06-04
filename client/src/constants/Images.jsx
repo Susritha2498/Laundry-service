@@ -31,9 +31,10 @@ import search from '../assets/search.svg'
 import Footer from '../assets/Footer.svg'
 import eye from "../assets/eye.svg"
 import avatar from "../assets/avatar.png"
+import cancel from "../assets/cancel.png"
 
 const obj={
-trousers,boxers,jeans,others,shirts,tshirts,joggers,bleach,fold,iron,wash,bleachBlue,foldBlue,ironBlue,washBlue,facebook,instagram,linkedin,list,add,home,listBlue,addBlue,homeBlue,padlock,search,Footer,eye,avatar,
+trousers,boxers,jeans,others,shirts,tshirts,joggers,bleach,fold,iron,wash,bleachBlue,foldBlue,ironBlue,washBlue,facebook,instagram,linkedin,list,add,home,listBlue,addBlue,homeBlue,padlock,search,Footer,eye,avatar,cancel,
 }
 
 

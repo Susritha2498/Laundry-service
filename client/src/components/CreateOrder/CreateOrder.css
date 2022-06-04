@@ -31,32 +31,10 @@ border-bottom: 2px solid #A0A0A0;
 .create-table-header{
 display: flex;
 justify-content:flex-start;
-align-content: center;
+align-items: center;
+column-gap:2% ;
 width:100%;
 background-color: #2F2F2F;
-}
-.order-producttype{
-width:20%;
-margin-right:20px;
-padding-left:30px;
-}
-.order-quantity{
-width:10%;
-margin-right:20px;
-padding-left:30px;
-}
-.order-washtype{
-width:40%;
-margin-right:20px;
-padding-left:30px;
-}
-.order-price{
-width:10%;
-margin-right:10px;
-}
-.order-reset{
-width:5%;
-margin-right:20px;
 }
 
 .create-table-header h3{
@@ -73,10 +51,27 @@ width:100%;
 display: flex; 
 width:100%; 
 height:80px;
-justify-content:center;
-align-content: center;
+justify-content:flex-start;
+align-items: center;
 border-bottom: 1px solid #E0E0E0;
+column-gap:2% ;
 }
+
+.create-order-details input{
+width:60px;
+height:30px;
+}
+
+.order-washtype{
+display: flex;
+justify-content: space-between;
+align-items: center;
+width:30%;
+}
+
+/* .order-washtype img{
+padding-right: 50px;
+} */
 
 #order-photo{
 display: flex;
@@ -87,7 +82,7 @@ align-items: center;
 #order-photo img{
 width:45px;
 height:45px;
-margin-right: 10px;
+padding-right: 10px;
 }
 
 #order-photo .order-name{
@@ -103,34 +98,27 @@ margin: 0;
 .order-name{
 text-transform: capitalize;
 }
+    
 
-.div-qty{
+.order-producttype{
+width:20%;
+}
+.order-quantity{
+width:10%;
+}
+
+.order-price{
 display: flex;
 justify-content: center;
 align-items: center;
-}
-.create-order-details input{
-width:60px;
-height:30px;
+width:10%;
 }
 
-.create-order-details .order-washtype{
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-}
-
-.div-price{
+.order-reset{
 display: flex;
 justify-content: center;
 align-items: center;
-}
-
-.div-reset{
-display: flex;
-justify-content: center;
-align-items: center;
-width:120px;
+width:15%;
 }
 
 .create-order-details button{
