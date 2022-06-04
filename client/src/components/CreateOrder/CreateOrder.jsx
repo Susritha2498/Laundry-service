@@ -1,38 +1,37 @@
 import React, { useState } from "react";
 import {images} from '../../constants/index'
 // import {Link} from "react-router-dom"
-import {Sidebar, Summary, Product} from "../index"
+import {Sidebar,Product, NavbarSuccess, Summary} from "../index"
 import './CreateOrder.css'
 
 const CreateOrder = () => {
 
 const types=["shirts","tshirts","trousers","jeans","boxers","joggers","others"]
 
-const [total,setTotal] = useState(0)
-const [proceed,setProceed] = useState(false)
+const Items = {shirts:{},tshirts:{},trouser:{},jeans:{},boxers:{},joggers:{},others:{}}
 
-const [quantity,setQuantity] = useState([0,0,0,0,0,0,0]) //shirts,tshirts,trousers,jeans,boxers,joggers,others
-const [washAmount,setWashAmount] = useState([0,0,0,0,0,0,0]) //shirts,tshirts,trousers,jeans,boxers,joggers,others
-const [productcost,setProductCost] = useState([0,0,0,0,0,0,0])
-const[washtypes,setWashtypes] = useState([[],[],[],[],[],[],[]])
+const [proceed,setProceed] = useState(false)
+const [total,setTotal] = useState(0)
 
 const handleCancel =(e)=>{
   e.preventDefault()
   setProceed(false)
-}
+  }
 
-const handleProceed = ()=>{
-  let Sum = 0
-  // types.map((type,index)=>{
-  //   Sum = 0
-  //   Sum+=productcost[index]
-  //   return
-  // })
+  const handleProceed = (e)=>{
+    let Sum = 0
+    types.map((type,index)=>{
+    Sum+=Items[type].price
+  })
   setTotal(Sum)
-  setProceed(true)
-}
+  if(Sum===0) alert("Please select some services")
+  if (Sum!=0) setProceed(true)
+  }
+
 
 return (
+  <div style={{display:'flex',flexDirection:"column", width:"100%"}}>
+      <NavbarSuccess/>
   <div className="app-create-order">
     <Sidebar/>
     <div className="create-section">
@@ -53,18 +52,18 @@ return (
 
       <div className="table-order-options">
         {types.map((type,index)=>{ 
-          return(<Product key={`productType-${index}-${type}`} type={type} index={index}/>)
+          return(<Product key={`productType-${index}-${type}`} type={type} index={index} Items={Items}/>)
         })}
         </div>
-      
-      <div className="create-proceed">
-        <button onClick={handleCancel}>cancel</button>
-        <button onClick={handleProceed}>proceed</button>
-      </div>
 
+        <div className="create-proceed">
+            <button onClick={handleCancel}>cancel</button>
+            <button onClick={handleProceed}>proceed</button>
+        </div>
     </div>
+  </div>
     <div className="order-summary" style={proceed?{display:"flex"}:{display:"none"}}>
-      <Summary quantity={quantity} washAmount={washAmount} washtypes={washtypes} total={total} proceed={proceed} setproceed={setProceed}/>
+      <Summary Items={Items} total={total}/>
     </div>
   </div>
  )

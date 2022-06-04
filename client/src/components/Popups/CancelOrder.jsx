@@ -1,10 +1,32 @@
 import React,{useState} from 'react'
 import './CancelOrder.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { images } from '../../constants/index'
-import {Successful} from '../index'
 
-const CancelOrder = ({cancel,setCancel}) => {
+const CancelOrder = ({id}) => {
+    const gobacktoOrders = useNavigate()
+
+    const handleCancelOrder = async(e)=>{
+        e.preventDefault()
+        let username = localStorage.key(0)
+        let token = localStorage.getItem(username)
+        const resp = await fetch("http://localhost:8080/delete/"+id,{
+            method:"DELETE",
+            headers:{
+                "Content-type":"application/json",
+                Authorisation: token,
+            },
+        })
+
+        if(resp.status===200){
+            alert("Post is successfully deleted")
+            gobacktoOrders('/orders')
+        }
+        else{
+            alert("Failed to delete the post")
+        }
+
+    }
   const [cproceed,setCProceed] = useState(false)
   return (
     <div className='app-cancelorder'>
@@ -23,14 +45,9 @@ const CancelOrder = ({cancel,setCancel}) => {
             </div>
         </div>
       </div>
+    
+    <button onClick={handleCancelOrder}>proceed</button>
 
-      <Link to="/orders">
-        <button onClick={(e)=>{ setCProceed(true) }}>proceed</button>
-      </Link>
-
-      <div className='summary-cancel' style={cproceed?{display:'flex'}:{display:"none"}}>
-        <Successful/>
-      </div>
     </div>
   )
 }
