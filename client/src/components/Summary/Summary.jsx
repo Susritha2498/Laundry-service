@@ -22,7 +22,7 @@ const Summary = ({quantity,washAmount, washtypes, total, proceed,setProceed,canc
 
   return (
     <>
-    <div className='app-checkout' style={(proceed||cancel)?{display:"flex"}:{display:"none"}}>
+    <div className='app-checkout' style={(proceed||cancel)?{display:"flex",flexDirection:"column"}:{display:"none"}}>
         <div className='app-checkout-heading'>
             <h2>Summary</h2>
             <span className="close" onClick={handleClose}>&times;</span>
