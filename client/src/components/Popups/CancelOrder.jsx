@@ -3,7 +3,7 @@ import './CancelOrder.css'
 import { Link, useNavigate } from 'react-router-dom'
 import { images } from '../../constants/index'
 
-const CancelOrder = ({id}) => {
+const CancelOrder = ({id,OrderNum}) => {
     const gobacktoOrders = useNavigate()
 
     const handleCancelOrder = async(e)=>{
@@ -13,8 +13,8 @@ const CancelOrder = ({id}) => {
         const resp = await fetch("http://localhost:8080/delete/"+id,{
             method:"DELETE",
             headers:{
-                "Content-type":"application/json",
-                Authorisation: token,
+                "content-Type":"application/json",
+                Authorization: token,
             },
         })
 
@@ -41,7 +41,7 @@ const CancelOrder = ({id}) => {
             </div>
             <div className='cancel-text'>
               <h2>Are you sure you want to cancel</h2> 
-              <h2>the Order <span>No. ORD0002</span></h2>
+              <h2>the Order <b style={{fontSize:"24px",color:"#5861AE"}}>No. {OrderNum}</b></h2>
             </div>
         </div>
       </div>

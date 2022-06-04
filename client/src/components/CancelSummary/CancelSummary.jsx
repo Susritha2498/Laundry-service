@@ -8,8 +8,7 @@ const CancelSummary = ({cancel,view,order,id}) => {
   const types=["shirts","tshirts","trousers","jeans","boxers","joggers","others"]
   const Items = order.orderDetails
   const total = order.price
-  console.log(Items)
- 
+  const OrderNum = order.orderId
   return (
   <div className={ordercancel?'order-cancel-popup':'order-cancel-summary'}>
     <div className='app-cancel-checkout' style={!ordercancel?{display:"flex"}:{display:"none"}}>
@@ -64,7 +63,7 @@ const CancelSummary = ({cancel,view,order,id}) => {
       <button onClick={e=>{setorderCancel(true)}} style={cancel?{color:'white',backgroundColor:'#F41313'}:{display:"none"}}>Cancel Order</button>
     </div>
     <div className='cancel-order-success' style={ordercancel?{display:"flex"}:{display:"none"}}>
-        <CancelOrder id={id}/>
+        <CancelOrder id={id} OrderNum={OrderNum}/>
     </div>
   </div>
   )
