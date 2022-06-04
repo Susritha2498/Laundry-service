@@ -1,12 +1,9 @@
 const express = require("express");
 const Bcrypt = require("bcrypt")
 const jtoken= require("jsonwebtoken");
-const mongoose = require("mongoose")
 const router = new express.Router();
 
-// const User = require("../models/registerSchema");
 const Order  = require("../models/createOrderSchema");
-const { Mongoose } = require("mongoose");
 
 async function authenticate(req,res,next){
     try{
@@ -41,15 +38,24 @@ router.post("/add/order",authenticate,async(req,res)=>{
         res.status(200).json({Status: "Successfully created the post",
         newOrder: saveOrder,});
       } catch (e) {
-        res.status(400).json({Status: "Error",
+        res.status(500).json({Status: "Error",
         Error: e.message});
       }
     
 })
 
+router.get('/allorders',async (req,res)=>{
+    try{
+        const orders = await Order.find()
+        res.status(200).json({data:orders,Status:"Orders successfully fetched"})
+
+    }catch(e){
+        res.status(500).json({Error:e.message})
+    }
+})
+
 router.get('/orders',authenticate ,async (req,res)=>{
     try{
-        // console.log(req.user)
         const orders = await Order.find({user:req.user})
         res.status(200).json({data:orders,Status:"Orders successfully fetched"})
 
@@ -64,7 +70,6 @@ try {
     const _id = req.params.id;
     // const _id = new mongoose.Types.ObjectId(req.params.id)
     const ordervar = await Order.findById(_id);
-    console.log(ordervar);
     if (!ordervar) {
     return res.status(404).json({Status: "Error",
     message: "There is no post available with the given id",});

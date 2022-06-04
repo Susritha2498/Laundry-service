@@ -7,4 +7,6 @@ export {default as Sidebar} from "./Sidebar/Sidebar"
 export {default as PastOrders} from "./PastOrders/PastOrders"
 export {default as CreateOrder} from "./CreateOrder/CreateOrder"
 export {default as Summary} from "./Summary/Summary"
-
+export {default as Successful} from "./Popups/Successful"
+export {default as Product} from "../components/Product"
+export {default as CancelOrder} from "./Popups/CancelOrder"

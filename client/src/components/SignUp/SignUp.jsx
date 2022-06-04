@@ -1,44 +1,56 @@
-import React, { useState } from "react";
+import React ,{useState} from "react";
 import {Details} from "../index"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './SignUp.css'
 
 const SignUp = () => {
-  const[user,setUser]=useState({name:"",email:"",phone:"",state:"",District:"",address:"",pincode:"",password:""})
 
-const handleInputs=(e)=>{
-  setUser({...user})
-}
+  const [message ,setMessage]=useState("")
+  const homepage = useNavigate()
+ 
+  const PostData=async(e)=>{
+    
+      e.preventDefault()
 
-const postData=(e)=>{
-  try{
-    e.prevent.default()
-    console.log(user)
-    const {name,email,phone,state,district,address,pincode,password}=user
-    const response= fetch( "http://localhost:8080/register",{
-      method:'POST',
-      headers:{
-        'content-Type':'application/json'
-      },
-      body:JSON.stringify({
-        name,email,phone,state,district,address,pincode,password
+      let name=e.target.elements.name.value
+      let mail=e.target.elements.email.value
+      let phone=e.target.elements.phone.value
+      let state=e.target.elements.state.value
+      let district=e.target.elements.district.value
+      let address=e.target.elements.address.value
+      let pincode=e.target.elements.pincode.value
+      let password=e.target.elements.password.value
+      const response=await fetch("http://localhost:8080/register",{
+        method:'POST',
+        headers:{
+          'content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          name,mail,phone,state,district,address,pincode,password
+        })
       })
-    })
-    console.log(response.status)
-    if(response.status===200){
-      alert("u have registered successfully")
-      console.log("successfully registered")
-    }else if(response.status===405){
-      alert("invalid credentials")
-    }
-  }catch(err){
-    console.log(err)
-  }
+      console.log(response.status)
+      if(response.status===200){
+        setMessage( "Registration successful")
 
-}
+        setTimeout(()=>{
+          setMessage("")
+          homepage('/')
+        },2000)
+      }
+    
+    else{
+
+      setMessage("Registration not successful")
+      setTimeout(()=>{
+        setMessage("")
+      },2000)
+
+    }
+  }
   return (
     <>
-    <div className='app-register'>
+    <form onSubmit={PostData} className='app-register'>
       <div className="register-page-LP">
         <h1>Laundry <br />Service</h1>
         <p>Doorstep Wash & <br /> Dryclean Service</p>
@@ -63,21 +75,23 @@ const postData=(e)=>{
                     <label htmlFor="district">District</label><br />
                     <input type="text" id="district"/><br />
                     <label htmlFor="address">Address</label><br />
-                    <input type="text" id="address"/><br />
+                    <input type="text"  id="address"/><br />
                     <label htmlFor="pincode">Pincode</label><br />
-                    <input type="number" id="pincode"/><br />
+                    <input type="number"  id="pincode"/><br />
                     <label htmlFor="password">Password</label><br />
-                    <input type="password" id="pasword"/>
+                    <input type="password" id="password"/>
+                    <p>{message}</p>
                 </div>
             </div>
                 <div className='user-verification'>
                     <input type="checkbox"></input>
-                    <label for="vehicle1"> I agree to Terms & Conditions receiving marketing and promotional materials</label><br></br>
-                    <a href="/orders"><button>Register</button></a><br />
+                    <label> I agree to Terms & Conditions receiving marketing and promotional materials</label><br></br>
+                    <a href="/orders"><button >Register</button></a><br />
                 </div>
         </div>
     
-    </div>
+    </form>
+
     <Details/></>
 
   )

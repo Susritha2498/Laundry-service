@@ -2,8 +2,8 @@ import React,{useState} from 'react';
 import {images} from '../../constants/index'
 import {Successful} from "../index"
 
-import './Summary.css'
-const Summary = ({quantity,washAmount, washtypes, total, proceed,setProceed,cancel,setCancel}) => {
+import './CancelSummary.css'
+const CancelSummary = ({quantity,washAmount, washtypes, total, proceed,setProceed}) => {
   const [ordersuccess,setorderSuccess] = useState(false)
   const [ordercancel,setorderCancel] = useState(false)
 
@@ -103,4 +103,4 @@ const Summary = ({quantity,washAmount, washtypes, total, proceed,setProceed,canc
   </>
   )
 }
-export default Summary
+export default CancelSummary

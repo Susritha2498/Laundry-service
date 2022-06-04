@@ -1,8 +1,6 @@
 .app-sigin{
-display: flex;
-flex-direction: column;
-width: 100%;
-height:1000px ;
+    display: flex;
+    flex-direction: column;
 }
 
 .app-sigin-section{
@@ -13,18 +11,20 @@ height:1000px ;
     height: 450px;
     border-bottom: 1px solid #1818cf;
 }
-
 .sigin-left {
     width: 50%;
-    
     height: 450px;
 }
 
-.sigin-left h2{
-font-size: 70px;
-color: #5861AE;
+button {
+    margin-left: 108px;
+    width: 100px;
+    height: 30px;
+    color: #5861AE;
+    border-radius: 4px;
+    border: 2px solid #4552C1;
+    text-decoration: none;
 }
-
 
 .app-userform {
     width: 50%;
@@ -34,23 +34,18 @@ color: #5861AE;
     background-color: ghostwhite;
 }
 
-.sigin-left #sigin-p2 {
-font-size: 14px;
-letter-spacing: 0.64px;
-color: #565657;
-text-transform: capitalize;
+
+span {
+    margin-left: 100px;
+    margin-top: 55px;
+    font-size: x-large;
+    color: #5861AE;
+    margin-bottom: 20px;
 }
 
 input#password {
     margin-left: 100px;
     width: 270px;
-
-
-.app-userform p{
-font-size: 26px;
-letter-spacing: 1.28px;
-color:#4552C1;
-margin-bottom: 50px;
 }
 
 
@@ -64,17 +59,8 @@ button.signin {
     padding: 5px;
     margin-top: 75px;
     margin-left: 157px;
-  }
-
-.app-userform input{
-text-decoration: none;
-outline: none;
-border: none;
-width: 300px;
-margin-bottom: 30px;
-background-color:transparent ;
-border-bottom: 2px solid #5861AE;
 }
+
 
 
 .sigin-left h4 {
@@ -95,10 +81,14 @@ margin-bottom: 50px;
 margin-right: 0;
 }
 
-.app-userform a{
-text-decoration: none;
-border: none;
-outline: none;
+
+.sigin-left p {
+    font: normal normal normal 16px/26px Avenir;
+    letter-spacing: 0.64px;
+    color: #565657;
+    text-transform: capitalize;
+    opacity: 1;
+    margin-left: 100px;
 }
   
 .sigin-left p {
@@ -128,6 +118,7 @@ outline: none;
     margin-left: 100px;
     width: 270px;
 }
+
 .app-userform label {
     margin-left: 100px;
     margin-top: 11px;

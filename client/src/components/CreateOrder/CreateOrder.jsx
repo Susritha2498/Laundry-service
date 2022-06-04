@@ -1,13 +1,38 @@
 import React, { useState } from "react";
 import {images} from '../../constants/index'
-import {Link} from "react-router-dom"
-import Sidebar from "../Sidebar/Sidebar";
+// import {Link} from "react-router-dom"
+import {Sidebar, Summary, Product} from "../index"
 import './CreateOrder.css'
 
 const CreateOrder = () => {
-const types=["trousers","boxers","jeans","others","shirt","tshirt","joggers"]
-const imglist=[images.trousers,images.boxers,images.jeans,images.others,images.shirt,images.tshirt,images.joggers]
- return (
+
+const types=["shirts","tshirts","trousers","jeans","boxers","joggers","others"]
+
+const [total,setTotal] = useState(0)
+const [proceed,setProceed] = useState(false)
+
+const [quantity,setQuantity] = useState([0,0,0,0,0,0,0]) //shirts,tshirts,trousers,jeans,boxers,joggers,others
+const [washAmount,setWashAmount] = useState([0,0,0,0,0,0,0]) //shirts,tshirts,trousers,jeans,boxers,joggers,others
+const [productcost,setProductCost] = useState([0,0,0,0,0,0,0])
+const[washtypes,setWashtypes] = useState([[],[],[],[],[],[],[]])
+
+const handleCancel =(e)=>{
+  e.preventDefault()
+  setProceed(false)
+}
+
+const handleProceed = ()=>{
+  let Sum = 0
+  // types.map((type,index)=>{
+  //   Sum = 0
+  //   Sum+=productcost[index]
+  //   return
+  // })
+  setTotal(Sum)
+  setProceed(true)
+}
+
+return (
   <div className="app-create-order">
     <Sidebar/>
     <div className="create-section">
@@ -24,46 +49,22 @@ const imglist=[images.trousers,images.boxers,images.jeans,images.others,images.s
         <h3 className="order-quantity">Quantity</h3>
         <h3 className="order-washtype">Wash Type</h3>
         <h3 className="order-price">Price</h3>
-        <h3 className="order-reset">Reset</h3>
       </div>
 
       <div className="table-order-options">
         {types.map((type,index)=>{ 
-          return(
-            <div className="create-order-details" key={`order${index}`}>
-              <div id="order-photo" className="order-producttype">
-                <img src={imglist[index]} alt="productType"/>
-                <div className="order-name">
-                  <h3>{type}</h3>
-                  <p>Lorem Ipsum is the </p>
-                </div>
-              </div>
-
-              <div className="div-qty"><input type='number' className="order-quantity" value={0}/></div>
-
-              <div className="order-washtype">
-                <img src={images.washingmachine} alt="washing" />
-                <img src={images.ironing} alt="iron" />
-                <img src={images.btowel} alt="folding" />
-                <img src={images.bleach} alt = "chemical washing"/>
-              </div>
-
-              <div className="div-price"><p className="order-price">______</p></div>
-              
-              <div className="div-reset">
-              <button type="reset" className="order-quantity">reset</button>
-              </div>
-
-            </div>
-          )
+          return(<Product key={`productType-${index}-${type}`} type={type} index={index}/>)
         })}
         </div>
       
       <div className="create-proceed">
-        <button>cancel</button>
-        <Link to="/checkout"><button>proceed</button></Link> 
+        <button onClick={handleCancel}>cancel</button>
+        <button onClick={handleProceed}>proceed</button>
       </div>
 
+    </div>
+    <div className="order-summary" style={proceed?{display:"flex"}:{display:"none"}}>
+      <Summary quantity={quantity} washAmount={washAmount} washtypes={washtypes} total={total} proceed={proceed} setproceed={setProceed}/>
     </div>
   </div>
  )
