@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {images} from '../../constants/index'
-// import {Link} from "react-router-dom"
 import {Sidebar,Product, NavbarSuccess, Summary} from "../index"
 import './CreateOrder.css'
 
@@ -12,6 +11,7 @@ const Items = {shirts:{},tshirts:{},trouser:{},jeans:{},boxers:{},joggers:{},oth
 
 const [proceed,setProceed] = useState(false)
 const [total,setTotal] = useState(0)
+
 
 const handleCancel =(e)=>{
   e.preventDefault()
@@ -65,6 +65,7 @@ return (
   </div>
     <div className="order-summary" style={proceed?{display:"flex",opacity:"1"}:{display:"none"}}>
       <Summary Items={Items} total={total} proceed={proceed} setProceed={setProceed}/>
+
     </div>
   </div>
  )
