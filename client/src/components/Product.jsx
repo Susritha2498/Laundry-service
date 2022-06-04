@@ -3,6 +3,7 @@ import { images } from '../constants/index'
 const imglist=[images.shirts,images.tshirts,images.trousers,images.jeans,images.boxers,images.joggers,images.others]
 
 const Product = ({type,index,Items}) => {
+
     const [qty,setQty] = useState(0)
     const [wash,setWash] = useState(false)
     const [bleach,setBleach] = useState(false)
@@ -33,6 +34,7 @@ const Product = ({type,index,Items}) => {
     }
 
     Items[type] = {producttype:type,quantity:qty,washcost:washprice,washtypes:washtype,price:qty*washprice}
+
 
     const handleReset = (e)=>{
         e.preventDefault()
