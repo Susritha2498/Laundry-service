@@ -1,11 +1,12 @@
 import React ,{useState} from "react";
+import { Icon } from 'react-icons-kit'
+import {eyeOff} from 'react-icons-kit/feather/eyeOff'
+import {eye} from 'react-icons-kit/feather/eye'
 import {Details,Navbar} from "../index"
 import { Link, useNavigate } from 'react-router-dom'
 import './SignUp.css'
 
 const SignUp = () => {
-
-  const [message ,setMessage]=useState("")
   const homepage = useNavigate()
  
   const PostData=async(e)=>{
@@ -31,21 +32,23 @@ const SignUp = () => {
       })
       console.log(response.status)
       if(response.status===200){
-        setMessage( "Registration successful")
-
-        setTimeout(()=>{
-          setMessage("")
-          homepage('/')
-        },2000)
+        alert("Successfully registered")
+        homepage('/')
       }
-    
-    else{
-
-      setMessage("Registration not successful")
-      setTimeout(()=>{
-        setMessage("")
-      },2000)
-
+      else{
+        alert("Registration failed")
+      }
+  
+  }
+  const [type,setType]=useState('password')
+  const[icon,setIcon]=useState(eyeOff)
+  const handleIcon=()=>{
+    if(type === "password"){
+      setIcon(eye)
+      setType('text')
+    }else{
+      setIcon(eyeOff)
+      setType('password')
     }
   }
   return (
@@ -80,8 +83,8 @@ const SignUp = () => {
                     <label htmlFor="pincode">Pincode</label><br />
                     <input type="number"  id="pincode"/><br />
                     <label htmlFor="password">Password</label><br />
-                    <input type="password" id="password"/>
-                    <p>{message}</p>
+                    <input type={type} id="password"/>
+                    <span className="eye-icon-signup"onClick={handleIcon}><Icon icon={icon} size={15}/></span>
                 </div>
             </div>
                 <div className='user-verification'>

@@ -1,4 +1,7 @@
 import React ,{useState}from 'react'
+import { Icon } from 'react-icons-kit'
+import {eyeOff} from 'react-icons-kit/feather/eyeOff'
+import {eye} from 'react-icons-kit/feather/eye'
 import { Link ,useNavigate} from 'react-router-dom'
 import {Details, Sidebar, Navbar, PastOrders, CreateOrder, Summary} from "../index"
 import axios from "axios"
@@ -9,11 +12,6 @@ const SignIn = () => {
   const [mail, setMail]=useState("")
   const [password,setPassword]=useState("")
   const [login, setLogin]=useState(false)
-  const [message ,setMessage]=useState("")
-  const [token,setToken] = useState("")
-  const [name,setName] = useState("")
-  const [id,setId] = useState("")
-
  const loginUser = async (e) =>{
       e.preventDefault();
       axios.post("http://localhost:8080/login",{
@@ -23,33 +21,22 @@ const SignIn = () => {
       .then((response)=>{
         let newtoken = response.data.genToken 
         let Username = response.data.userDetails.name 
-        let UserId = response.data.userDetails._id      
         localStorage.setItem(Username,newtoken)
         alert("Successfully logged in")
-        setMail(mail)
-        setName(Username)
-        setToken(newtoken)
-        setId(UserId)
-        setMessage("Login is successful")
-        setTimeout(()=>{
-          setMessage("")
-          pastorders('/orders')
-        },2000)
         setLogin(true)
+        pastorders('/orders')
         }).catch((err)=>{
-          setMessage("Login not successful")
-          setTimeout(()=>{
-            setMessage("")
-          },2000)
           setLogin(false)
-            })
+        })
  }
+ const [show,setShow]=useState(false)
+
    return (   
   <div className='app-sigin'>  
     <Navbar/>
     <div className="app-sigin-section">      
         <div className="sigin-left">        
-            <h2 className="header">laundry <br></br> service</h2>   
+            <h2 className="header">Laundry <br></br>Service</h2>   
             <h4>Doorstep Wash & Dryclean Service</h4>      
             <p>Don't Have An Account?</p>     
             <Link to="/register"><button>Register</button></Link>  
@@ -63,18 +50,15 @@ const SignIn = () => {
           />  
 
           <label htmlFor="password">Password</label>    
-          <input type="password" id='password' value={password}
+          <input type={show?'text':'password'} id='password' value={password}
           onChange={(e)=>setPassword(e.target.value)}
           />  
-          <p>{message}</p>
+          <span className="eye-icon"onClick={e=>{setShow(!show)}}><Icon icon={show?eye:eyeOff} size={20}/></span>
           <a className="forgot"href="#">Forgot password?</a> 
           <button type="submit" className="signin" onClick={loginUser}>Sign in</button>       
         </form>           
       </div>    
   <Details/>
-  <div style={{display:"none"}}>
-    <Sidebar mail={mail} setMail={setMail} /> 
-  </div>  
 </div> 
   )
 }
